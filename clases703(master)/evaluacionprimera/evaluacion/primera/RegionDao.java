@@ -1,8 +1,11 @@
 package evaluacion.primera;
 
-import java.beans.Statement;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -24,13 +27,30 @@ public class RegionDao {
 	ResultSet rs = null;
 	RegionDTo region = null;
 	
-	public static List<RegionDTo> obtenertodos(){
-		Conexion conexion2 = null;
+	public static List<RegionDTo> obtenertodos() throws SQLException{
+		Connection conexion2 = null;
 		Statement stm = null;
 		ResultSet rs = null;
 		RegionDTo region = null;
+		try{
+	   conexion2 = Conexion.establecerconn();
+		stm = conexion2.createStatement();
+		rs = stm.executeQuery(Instrucciones.CONSULTAR_TODOS);
+		ArrayList<RegionDTo> lista_regiones = new ArrayList<RegionDTo>();
+		while (rs.next()) {
+			int regionID;
+			String regionName;
+			
+			regionID = rs.getInt(1);
+			regionName = rs.getString(2);
+		}
 		
-		conexion2 = Connection.establecerconn();
+		catch{
+			
+		}
+		finally{
+			
+		}
 		
 		
 		

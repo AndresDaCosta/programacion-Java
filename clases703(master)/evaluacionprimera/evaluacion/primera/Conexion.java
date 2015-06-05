@@ -17,11 +17,11 @@ public class Conexion {
 
 
 	
-	Connection conn = null;
-	ResultSet rset = null;
-	Statement stmt = null;
-	Savepoint punto = null;
-	public Connection establecerconn() {
+	static Connection conn = null;
+	static ResultSet rset = null;
+	static Statement stmt = null;
+	static Savepoint punto = null;
+	public static Connection establecerconn() {
 		//metodo de establecer conexion.d
 		try {
 			
