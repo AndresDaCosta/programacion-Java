@@ -5,7 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Savepoint;
 import java.sql.Statement;
-
+/*
+ * @author jorge andres da costa
+ * 
+ * esta clase se debe de crear los metodos de establacer la conexion y liberar los recursos para ser llamados en la clase 
+ * RegionDao
+ * 
+ * 
+ * */
 public class Conexion {
 
 
@@ -15,7 +22,7 @@ public class Conexion {
 	Statement stmt = null;
 	Savepoint punto = null;
 	public Connection establecerconn() {
-		
+		//metodo de establecer conexion.
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -26,7 +33,7 @@ public class Conexion {
 			conn.setAutoCommit(false);
 			punto = conn.setSavepoint();
 			conn.commit();
-			rset = stmt.executeQuery("select * from employees where  salary > 3000");
+			
 			
 			return conn;
 		} catch (Exception e) {
@@ -36,7 +43,7 @@ public class Conexion {
 	}
 	
 	public void cerraconn(){
-		
+		//metodo de  liberar recursos
 		if (rset != null) 	{ try { rset.close(); } catch (Exception e2) { e2.printStackTrace(); }}
 		if (stmt != null)	{ try {	stmt.close(); } catch (Exception e2) { e2.printStackTrace(); }}
 		if (conn != null) 	{ try { conn.close(); } catch (Exception e3) { e3.printStackTrace(); }}

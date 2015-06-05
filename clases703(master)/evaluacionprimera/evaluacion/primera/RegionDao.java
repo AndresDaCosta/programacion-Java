@@ -1,7 +1,9 @@
 package evaluacion.primera;
 
 import java.beans.Statement;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 
 /*
  * author: jorge andres da costa ribeiro
@@ -16,19 +18,19 @@ public class RegionDao {
 	Conexion conexion1 = new Conexion();
 	//declaro un nuebo object de conexion para invocar a la conexion que se hace ahora
 	
-	//creo un segundo objeto para llamar al metodo de establecer conexion
+	
 	
 	Statement stm = null;
 	ResultSet rs = null;
-	RegionDto region = null;
+	RegionDTo region = null;
 	
-	public static List<RegionDto> obtenertodos(){
+	public static List<RegionDTo> obtenertodos(){
 		Conexion conexion2 = null;
 		Statement stm = null;
 		ResultSet rs = null;
-		RegionDto region = null;
+		RegionDTo region = null;
 		
-		conexion2 = Conexion.obtenerconn();
+		conexion2 = Connection.establecerconn();
 		
 		
 		
