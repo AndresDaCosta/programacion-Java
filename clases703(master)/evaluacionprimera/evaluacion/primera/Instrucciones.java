@@ -6,5 +6,5 @@ package evaluacion.primera;
  * */
 public class Instrucciones {
 	public static final String CONSULTAR_TODOS = "select * from regions";
-	//le decimos que seleccione todo de la tabala regions
+	//le decimos que seleccione todo de la tabala regions .
 }

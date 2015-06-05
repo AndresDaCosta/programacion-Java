@@ -22,7 +22,7 @@ public class Conexion {
 	Statement stmt = null;
 	Savepoint punto = null;
 	public Connection establecerconn() {
-		//metodo de establecer conexion.
+		//metodo de establecer conexion.d
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");

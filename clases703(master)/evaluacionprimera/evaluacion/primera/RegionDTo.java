@@ -8,7 +8,7 @@ package evaluacion.primera;
  * su identificador y rececuperar toda la lista de regiones.
  * se valora numero de clases, nuemero de metodos, eestructura, claridad de codigo y documentacion.
  * 
- * NAME: este es el metodo donde se pone el objeto region con sus atributos
+ * NAME: este es el metodo donde se pone el objeto region con sus atributos.
  * 
  * */
 public class RegionDTo {

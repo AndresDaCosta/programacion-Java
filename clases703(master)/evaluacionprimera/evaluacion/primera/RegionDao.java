@@ -16,7 +16,7 @@ import java.util.List;
 public class RegionDao {
 
 	Conexion conexion1 = new Conexion();
-	//declaro un nuebo object de conexion para invocar a la conexion que se hace ahora
+	//declaro un nuebo object de conexion para invocar a la conexion que se hace ahora.
 	
 	
 	
