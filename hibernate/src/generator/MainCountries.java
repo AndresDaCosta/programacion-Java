@@ -8,7 +8,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
+/*******************************************************************************************************************
+ *  @author: jorge andres da dosta ribeiro
+ *  @date: 10/06/2015
+ * 	
+ * crear un programa para que te muestre a traves de las regiones todos los paise que pertenecen a esas regiones
+ * 
+ * version. 1.0
+ * 
+ * ****************************************************************************************************************/
 public class MainCountries {
 public static void main(String[] args) {
 	
@@ -17,26 +25,40 @@ public static void main(String[] args) {
 	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 	SessionFactory factory = configuration.buildSessionFactory(builder.build());
 	
-	Transaction trasacion = null;
-	Session sesion1 = null;
+	//creo y llamo a las configuraciones de hibernate y despues me creo un builder de factory y lo creo
+	
+	Transaction trasacion = null; 	//declaro la variable del factory
+	Session sesion1 = null;			//declaro una variable de session
 	try{
 	
-		sesion1 = factory.openSession();
-		trasacion = sesion1.beginTransaction();
+		sesion1 = factory.openSession();			//habro la sesion
+		trasacion = sesion1.beginTransaction();		//y habro una trasaccion
 		
 			List<Regions> list = sesion1.createSQLQuery("select * from Regions").addEntity(Regions.class).list();
-			Iterator<Regions> it = list.iterator();
+				
+					//ejecuto la Query para que me salgan todas la razones
+								
+			Iterator<Regions> it = list.iterator();			//creo un interator para "interactuar con la lista
 			
-		Regions region1;
-		Countries pais;
+			
+		Regions region1;  	//declaro una region	
+		Countries pais;		//declaro un pais		
 		
 		while(it.hasNext()){
-			region1 = it.next();
-				System.out.println(region1.getRegionName());
-				Iterator<Countries> it_pais = region1.getCountrieses().iterator();
+			
+			//abro un bucle que funciona mientras el interador tenga siguiente
+			
+			region1 = it.next();  																 						//a la region le doy valor del interador
+				
+				System.out.println("\n" + "se van a mostrar los paises de la region " + region1.getRegionName());   	//imprimo en pantalla la region 
+				Iterator<Countries> it_pais = region1.getCountrieses().iterator();   			 						//seteo un interador para el pais
+				
 			while(it_pais.hasNext()){
-				pais = it_pais.next();
-					System.out.println(pais.getCountryName());
+				
+				//el bucle interactua con la lista de paises para que me las muestre
+				
+				pais = it_pais.next();                          														//pais toma valor del interator
+					System.out.println("\n" + pais.getCountryName() + " pertenece a " + region1.getRegionName());		//imprimo en pantalla el pais
 			}
 		}
 		
@@ -45,12 +67,18 @@ public static void main(String[] args) {
 		
 	}
 	catch(Exception e){
-		e.printStackTrace();
-			trasacion.rollback();
+		
+		//si llega a "aqui" algo va muy mal!!!!!!!
+		
+		e.printStackTrace();	      	//salta la exception	
+			trasacion.rollback();		//activo el rollback para volver atras
 	}
 	finally{
-		sesion1.disconnect();
-		factory.close();
+		
+		//si llega a "aqui" todo a ido de perlas :)
+		
+		sesion1.disconnect();    		//cierro la sesion
+		factory.close(); 				//y cierro el factory
 	}
 	
 	
