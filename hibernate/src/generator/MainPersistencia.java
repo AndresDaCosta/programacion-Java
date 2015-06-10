@@ -14,14 +14,14 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToStringTransformer;
-/*
- * @author: jorge andre da costa ribeiro
- * @date: 10/6/2015
- * 
- * crear un metodo que interactue con la BBDD, que aumente el salario de los empleados del departamento de ventas un 20%
- * 
- * version: 1.0
- * */
+/*******************************************************************************************************************************
+ * @author: jorge andre da costa ribeiro                                                                                       *
+ * @date: 10/6/2015																											   *
+ * 																															   *
+ * crear un metodo que interactue con la BBDD, que aumente el salario de los empleados del departamento de ventas un 20%       *
+ * 																															   *
+ * version: 1.0																												   *
+ * ****************************************************************************************************************************/
 
 
 public class MainPersistencia {
@@ -36,17 +36,16 @@ public class MainPersistencia {
 		
 		/*primero me creo una nueva configuracion para llamar al fichero de config de hibernate
 		 * despues me creo un builder para que reciba el registro para hacer un factory
-		 * y al final me creo un factory para la sesion 
+		 * y al final me creo un factory para la sesion.
 		 * */
-		
-		Session sesion1 = null;           //declaro una variable de sesion
+		           
 		Transaction trasacion = null;    //y me declaro una variable de transaccion 
-		
+		Session sesion1 = null;
 		try{
 			sesion1 = factory.openSession();           //abro la sesion con el factory
 			trasacion = sesion1.beginTransaction();   //y abro con la sesion antes creada una transaccion
 			@SuppressWarnings("unchecked")
-			List<Employees> list = sesion1.createSQLQuery("select * from employees where department_id = 80").addEntity(Employees.class).list();
+			List<Employees> list = sesion1.createSQLQuery("SELECT * FROM EMPLOYEES where department_id = (select department_id from DEPARTMENTS where department_name = 'Sales');").addEntity(Employees.class).list();
 			
 				//delclaro una lista de empleados para meter ahi toda la imformacion de la query planteada a la BBDD.
 
