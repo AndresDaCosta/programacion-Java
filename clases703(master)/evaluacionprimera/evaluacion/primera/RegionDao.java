@@ -45,9 +45,8 @@ public class RegionDao {
 			regionName = rs.getString(2);
 		}
 		
-		catch{
-			
 		}
+		
 		finally{
 			
 		}

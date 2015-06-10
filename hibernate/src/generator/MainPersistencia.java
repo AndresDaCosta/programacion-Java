@@ -1,0 +1,68 @@
+package generator;
+import java.math.BigDecimal;
+import java.util.Iterator;
+import java.util.List;
+
+
+
+
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToStringTransformer;
+
+
+
+public class MainPersistencia {
+	private static int nuevosalario = 0;
+	private static final double porcentaje = 1.20;
+	
+	public static void main(String[] args) {
+		
+		Configuration configuration = new Configuration().configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+		SessionFactory factory = configuration.buildSessionFactory(builder.build());
+		
+		
+		Session sesion1 = null;
+		Transaction trasacion = null;
+		
+		try{
+			sesion1 = factory.openSession();
+			trasacion = sesion1.beginTransaction();
+			@SuppressWarnings("unchecked")
+			List<Employees> list = sesion1.createSQLQuery("select * from employees where department_id = 80").addEntity(Employees.class).list();
+			Iterator<Employees> it = list.iterator();
+			Employees empleado;
+			BigDecimal big = null;
+			while(it.hasNext()){
+				
+				empleado = it.next();
+				nuevosalario = (int)(empleado.getSalary().doubleValue() * porcentaje );
+				System.out.println("el empleado " + empleado + " tendra un salario final " + nuevosalario);
+				
+				big = new BigDecimal(nuevosalario);
+				
+				empleado.setSalary(big);
+				sesion1.update(empleado);
+				System.out.println("se ha seteado correctamente");
+				
+			}
+			trasacion.commit();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			trasacion.rollback();
+			
+		}
+		finally{
+			sesion1.disconnect();
+			factory.close();
+		}
+		
+	}
+}
