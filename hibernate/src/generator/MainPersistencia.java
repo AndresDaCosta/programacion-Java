@@ -34,7 +34,8 @@ public class MainPersistencia {
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory factory = configuration.buildSessionFactory(builder.build());
 		
-		/*primero me creo una nueva configuracion para llamar al fichero de config de hibernate
+		/*****
+		 * primero me creo una nueva configuracion para llamar al fichero de config de hibernate
 		 * despues me creo un builder para que reciba el registro para hacer un factory
 		 * y al final me creo un factory para la sesion.
 		 * */

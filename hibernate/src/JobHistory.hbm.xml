@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2015 15:27:51 by Hibernate Tools 4.3.1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-jun-2015 15:04:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="generator">
-    <class name="JobHistory" table="JOB_HISTORY" optimistic-lock="version">
+    <class name="JobHistory" table="JOB_HISTORY">
         <comment>Table that stores job history of the employees. If an employee changes departments within the job or changes jobs within the department, new rows get inserted
         into this table with old job information of the employee. Contains a complex primary key: employee_id+start_date. Contains 25 rows. References with jobs, employees, and
         departments tables.</comment>
@@ -15,6 +15,11 @@
                 <column name="START_DATE" length="7" />
             </key-property>
         </composite-id>
+        <many-to-one name="employees" class="Employees" update="false" insert="false" fetch="select">
+            <column name="EMPLOYEE_ID" precision="6" scale="0" not-null="true">
+                <comment>A not null column in the complex primary key employee_id+start_date. Foreign key to employee_id column of the employee table</comment>
+            </column>
+        </many-to-one>
         <many-to-one name="departments" class="Departments" fetch="select">
             <column name="DEPARTMENT_ID" precision="4" scale="0">
                 <comment>Department id in which the employee worked in the past; foreign key to deparment_id column in the departments table</comment>
@@ -23,11 +28,6 @@
         <many-to-one name="jobs" class="Jobs" fetch="select">
             <column name="JOB_ID" length="10" not-null="true">
                 <comment>Job role in which the employee worked in the past; foreign key to job_id column in the jobs table. A not null column.</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="employees" class="Employees" update="false" insert="false" fetch="select">
-            <column name="EMPLOYEE_ID" precision="6" scale="0" not-null="true">
-                <comment>A not null column in the complex primary key employee_id+start_date. Foreign key to employee_id column of the employee table</comment>
             </column>
         </many-to-one>
         <property name="endDate" type="date">

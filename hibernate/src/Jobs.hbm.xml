@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2015 15:27:51 by Hibernate Tools 4.3.1 -->
-<hibernate-mapping package="generator">
-    <class name="Jobs" table="JOBS" optimistic-lock="version">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-jun-2015 15:04:48 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="generator"> 
+    <class name="Jobs" table="JOBS">
         <comment>jobs table with job titles and salary ranges. Contains 19 rows. References with employees and job_history table.</comment>
         <id name="jobId" type="string">
             <column name="JOB_ID" length="10" />

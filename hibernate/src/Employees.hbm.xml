@@ -1,14 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2015 15:27:51 by Hibernate Tools 4.3.1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-jun-2015 15:04:48 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="generator">
-    <class name="Employees" table="EMPLOYEES" optimistic-lock="version">
+    <class name="Employees" table="EMPLOYEES">
         <comment>employees table. Contains 107 rows. References with departments, jobs, job_history tables. Contains a self reference.</comment>
         <id name="employeeId" type="int">
             <column name="EMPLOYEE_ID" precision="6" scale="0" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="employees" class="Employees" fetch="select">
+            <column name="MANAGER_ID" precision="6" scale="0">
+                <comment>Manager id of the employee; has same domain as manager_id in departments table. Foreign key to employee_id column of employees table. (useful for
+                reflexive joins and CONNECT BY query)</comment>
+            </column>
+        </many-to-one>
         <many-to-one name="departments" class="Departments" fetch="select">
             <column name="DEPARTMENT_ID" precision="4" scale="0">
                 <comment>Department id where employee works; foreign key to department_id column of the departments table</comment>
@@ -17,12 +23,6 @@
         <many-to-one name="jobs" class="Jobs" fetch="select">
             <column name="JOB_ID" length="10" not-null="true">
                 <comment>Current job of the employee; foreign key to job_id column of the jobs table. A not null column.</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="employees" class="Employees" fetch="select">
-            <column name="MANAGER_ID" precision="6" scale="0">
-                <comment>Manager id of the employee; has same domain as manager_id in departments table. Foreign key to employee_id column of employees table. (useful for
-                reflexive joins and CONNECT BY query)</comment>
             </column>
         </many-to-one>
         <property name="firstName" type="string">
