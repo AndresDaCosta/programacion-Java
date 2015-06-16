@@ -12,7 +12,7 @@ public class Main {
 			System.out.println(""
 					+ "	***************************************************************	"+"\n"
 					+ "				MENU DE SERVICIOS DE EMPLEADO						"+"\n"
-					+ "		marque un numero para seleccionar la opcion que desea		"+"\n"
+					+ "		marque un numero para seleccionar la opcion que desea       "+"\n"
 					+ "																	"+"\n"
 					+ "		1- aumento de sueldo un 20%	.								"+"\n"
 					+ "		2- mostrar empleadoas que mas cobran por departamento.		"+"\n"
