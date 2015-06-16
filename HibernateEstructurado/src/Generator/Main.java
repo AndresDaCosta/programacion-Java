@@ -18,7 +18,8 @@ public class Main {
 					+ "		2- mostrar empleadoas que mas cobran por departamento.		"+"\n"
 					+ "		3- mostrar todos los empleados de cada departamento.		"+"\n"
 					+ "		4- bajar el sueldo con porcentaje seleccionado.				"+"\n"
-					+ "		5- salir 													"+"\n"
+					+ "		5-buscar por id												"+"\n"
+					+ "		6- salir y cerrar factory									"+"\n"
 					+ "	*************************************************************** ");
 					
 			
@@ -42,7 +43,10 @@ public class Main {
 				System.out.println("has seleccionado bajar los sueldos");
 				empleadoservicios.bajarsueldos();
 			case 5:
+				System.out.println("ha seleccionado buscar un empleado por ID");
+			case 6:
 				System.out.println("se va a salir del programa ");
+				SesionManager.cerrarfactory();
 				salir = true;
 				
 				

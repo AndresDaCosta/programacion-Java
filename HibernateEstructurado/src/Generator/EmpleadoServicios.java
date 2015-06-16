@@ -203,8 +203,7 @@ public class EmpleadoServicios {
 			lista_empleados2 = empleados.listaempleados();
 			salariosDown(lista_empleados2);
 			trasicion.commit();
-			todoOk = true;
-			
+			todoOk = true;			
 		}
 		catch(Exception e){
 			e.printStackTrace();

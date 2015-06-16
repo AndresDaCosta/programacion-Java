@@ -40,5 +40,7 @@ public class SesionManager {
 		
 		sesion.close();										//devuelvo un cierre de sesion
 	}
-	
+	public static void cerrarfactory(){
+		factory.close();
+	}
 }

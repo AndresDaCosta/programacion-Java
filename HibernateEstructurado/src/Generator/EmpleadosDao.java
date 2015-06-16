@@ -48,6 +48,11 @@ public class EmpleadosDao {
 		emp_dep = this.sesion.createSQLQuery("select * from employees where department_id =" + dep).addEntity(Employees.class).list();
 		
 		return emp_dep;
+		}
+	public Employee recuperarID(int dep){
+		
+		Employee empleado = null;
+		
 	}
 	
 	public void setSesion(Session sesion2) {       //declaro un metodo para obtener la conexion que no me devuelve nada
