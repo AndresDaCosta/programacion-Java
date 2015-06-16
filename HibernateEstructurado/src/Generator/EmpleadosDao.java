@@ -32,6 +32,23 @@ public class EmpleadosDao {
 		return listempleados; 				//devuelvo la lista de empleados
 	}
 	
+	public List<Employees> maximoSalario(){
+		
+		List<Employees> maximosalary = null;
+		
+		maximosalary = this.sesion.createSQLQuery("select * from employees where (DEPARTMENT_ID,SALARY) in (SELECT distinct(department_id),max(salary) from EMPLOYEES GROUP BY DEPARTMENT_ID)")
+				.addEntity(Employees.class).list();
+		
+		return  maximosalary;
+	}
+	public List<Employees> empleadosDep(int dep){
+		
+		List<Employees> emp_dep = null;
+		
+		emp_dep = this.sesion.createSQLQuery("select * from employees where department_id =" + dep).addEntity(Employees.class).list();
+		
+		return emp_dep;
+	}
 	
 	public void setSesion(Session sesion2) {       //declaro un metodo para obtener la conexion que no me devuelve nada
 		

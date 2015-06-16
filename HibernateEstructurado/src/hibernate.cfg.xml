@@ -10,7 +10,7 @@
         <property name="hibernate.connection.username">HR</property>
         <property name="hibernate.default_schema">HR</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-        
+        <property name="show_sql">false</property>
         <mapping resource="Departments.hbm.xml" />
         <mapping resource="EmpDetailsView.hbm.xml" />
         <mapping resource="Countries.hbm.xml" />
