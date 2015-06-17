@@ -1,0 +1,29 @@
+package Generator;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		EmpleadoServicios empleadoservicios = new EmpleadoServicios();
+		Scanner in = new Scanner(System.in);
+		switch (in) {
+		case 1:
+			System.out.println("Has selecionado aumento de suledo del 20%");
+			empleadoservicios.incrementarsalarios();
+			break;
+
+		default:
+			System.out.println("no ha selecionado nada");
+			break;
+		}
+		
+		
+		empleadoservicios.incrementarsalarios();
+		empleadoservicios.maximoempleado();
+		empleadoservicios.empleadosDep();
+	}
+
+	
+		
+}

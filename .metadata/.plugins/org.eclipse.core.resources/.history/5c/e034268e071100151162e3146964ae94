@@ -1,0 +1,20 @@
+package Generator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+public class Dao {
+
+	public static ArrayList<Employees> listaempleados;{
+		
+			SessionFactory factory1 = SesionManager.getSessionFactory();
+		
+		
+	}
+	
+	
+}

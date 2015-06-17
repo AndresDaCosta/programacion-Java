@@ -1,0 +1,23 @@
+package Generator;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+public class SesionManager {
+
+	
+	public static  SessionFactory obtenerconexion;{
+		
+		Configuration configuracion = new Configuration().configure();
+		StandardServiceRegistryBuilder constructor =  new StandardServiceRegistryBuilder().applySettings(configuracion.getProperties());
+		SessionFactory factory = configuracion.buildSessionFactory(constructor.build());
+		
+		
+	}
+	
+	
+	
+	
+	
+}

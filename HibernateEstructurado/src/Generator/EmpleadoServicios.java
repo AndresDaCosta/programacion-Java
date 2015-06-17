@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**************************************************************************************************************
- * @author: jorge andres da costa																			
+ * @author: jorge andres da costa																			  *
  * @date 10/06/2015
  * 
  *       crea una clase que interactue con la BBDD para aumentar los salarios
@@ -223,8 +223,8 @@ public class EmpleadoServicios {
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("selecione el porcentaje de bajada de sueldo ");
-		System.out.println("NOTA: pongalo en numeros decimales (ejemplo: 10% = 1.1 ; 30 = 1.3)");
 		BigDecimal por = in.nextBigDecimal();
+		in.close();
 		for (Employees emp : lista_empleado2) {
 			
 			emp.setSalary(emp.getSalary().multiply(por));
@@ -232,4 +232,5 @@ public class EmpleadoServicios {
 			
 		}
 	}
+	
 }

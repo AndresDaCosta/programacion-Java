@@ -1,0 +1,73 @@
+package Generator;
+
+import java.math.BigDecimal;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class EmpleadoServicios {
+
+	EmpleadosDao empleados = new EmpleadosDao();
+	
+	public boolean incrementarsalarios(){
+		Session sesion1 = null;
+		Transaction trasicion = null;
+		boolean com = false;
+		List<Employees> lista_empleados = null;
+		try{
+		sesion1 = SesionManager.obtenerSesionNueva();
+		System.out.println("1");
+		empleados.setSesion(sesion1);
+		System.out.println("2");
+		trasicion = empleados.getSesion().beginTransaction();
+		System.out.println("3");
+		lista_empleados = empleados.listaempleados();
+		System.out.println("4");
+		
+		salariosUp(lista_empleados);
+		System.out.println("5");
+		trasicion.commit();
+		System.out.println("6");
+		com = true;
+		System.out.println("7");
+		
+		}//fin try
+		catch(Exception e){
+			System.out.println("algo ha ido mal");
+			trasicion.rollback();
+			com = false;
+			
+			e.printStackTrace();
+		}
+		finally{
+			SesionManager.cerrarSession(sesion1);
+		
+		}
+		
+		return com;
+	}
+	private void salariosUp(List<Employees> lista_empleados){
+		int nuevosalario = 0;
+		
+		Iterator<Employees> it = lista_empleados.iterator(); 
+		
+		for(Employees emp:lista_empleados){
+			
+			emp.setSalary(emp.getSalary().multiply(new BigDecimal(1.2)));
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

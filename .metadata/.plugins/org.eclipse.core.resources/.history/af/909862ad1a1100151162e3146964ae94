@@ -1,0 +1,37 @@
+package Generator;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+public class SesionManager {
+			 
+	
+	 static  {
+		
+		Configuration configuracion = new Configuration().configure();
+		StandardServiceRegistryBuilder constructor =  new StandardServiceRegistryBuilder().
+				applySettings(configuracion.getProperties());
+		SessionFactory factory = configuracion.buildSessionFactory(constructor.build());
+		
+		
+	}
+	 private static SessionFactory factory;
+	 
+	 private SesionManager (){}
+	
+	public static SessionFactory getSessionFactory(){
+		return factory;
+		
+	}
+	public static Session obtenerSesionNueva(){
+		
+		return factory.openSession();
+	}
+	public static void cerrarSession(Session sesion){
+		
+		sesion.close();
+	}
+	
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.password">medaigual</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">HR</property>
+        <property name="hibernate.default_schema">HR</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="Departments.hbm.xml" />
+        <mapping resource="EmpDetailsView.hbm.xml" />
+        <mapping resource="Countries.hbm.xml" />
+        <mapping resource="Jobs.hbm.xml" />
+        <mapping resource="JobHistory.hbm.xml" />
+        <mapping resource="Locations.hbm.xml" />
+        <mapping resource="Employees.hbm.xml" />
+        <mapping resource="Regions.hbm.xml" />
+        <property name="show_sql">true</property>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,47 @@
+import java.math.BigDecimal;
+import java.util.Iterator;
+import java.util.List;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+
+
+public class MainPersistencia {
+	private static int newsalary = 0;
+	private static final double porcentaje = 1.20;
+	
+	public static void main(String[] args) {
+		
+		Configuration configuration = new Configuration().configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+		SessionFactory factory = configuration.buildSessionFactory(builder.build());
+		
+		
+		
+		Transaction trasacion = null;
+		
+		try{
+			Session sesion1 = factory.openSession();
+			trasacion = sesion1.beginTransaction();
+			List<Employees> list = sesion1.createSQLQuery("select * from employees where department_id = 80").addEntity(Employee.class).list();
+			Iterator<Employees> it = list.iterator();
+			Employees empleado;
+			BigDecimal big = null;
+			
+		}
+		catch(Exception e){
+			
+			
+		}
+		finally{
+			
+			
+		}
+		
+	}
+}

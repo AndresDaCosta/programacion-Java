@@ -1,0 +1,8 @@
+package Generator;
+
+public class Main {
+
+	EmpleadoServicios empleadoservicios = new EmpleadoServicios();
+	
+		
+}

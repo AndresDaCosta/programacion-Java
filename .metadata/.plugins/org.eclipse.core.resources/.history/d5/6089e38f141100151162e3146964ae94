@@ -1,0 +1,63 @@
+package Generator;
+
+import java.math.BigDecimal;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class EmpleadoServicios {
+
+	EmpleadosDao empleados = new EmpleadosDao();
+	
+	public boolean incrementarsalarios(){
+		Session sesion1 = null;
+		Transaction trasicion = null;
+		boolean com = false;
+		List<Employees> lista_empleados = null;
+		try{
+		sesion1 = SesionManager.obtenerSesionNueva();
+				empleados.setSesion(sesion1);
+		trasicion = empleados.getSesion().beginTransaction();
+		lista_empleados = empleados.listaempleados();
+		salariosUp(lista_empleados);
+		trasicion.commit();
+		com = true;
+		
+		}//fin try
+		catch(Exception e){
+			trasicion.rollback();
+			com = false;
+			System.out.println("algo ha ido mal");
+			e.printStackTrace();
+		}
+		finally{
+			SesionManager.cerrarSession(empleados.getSesion());
+		}
+		
+		return com;
+	}
+	private void salariosUp(List<Employees> lista_empleados){
+		int nuevosalario = 0;
+		
+		Iterator<Employees> it = lista_empleados.iterator(); 
+		
+		for(Employees emp:lista_empleados){
+			
+			emp.setSalary(emp.getSalary().multiply(new BigDecimal(1.2)));
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
